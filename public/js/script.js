@@ -32,7 +32,7 @@ inputForm.addEventListener('submit', (e) => {
   document.getElementById('message3').innerHTML = '<img src="/img/loading.gif">';
 
   // Fetching data from form and providing it to backend
-  fetch(`http://localhost:3000/contests?user1=${userOneHandle}&user2=${userTwoHandle}&search=${searchQuery}`).then((response) => {
+  fetch(`/contests?user1=${userOneHandle}&user2=${userTwoHandle}&search=${searchQuery}`).then((response) => {
     response.json().then((data) => {
       if (data.error) {
         document.getElementById('message3').innerHTML = data.error;
