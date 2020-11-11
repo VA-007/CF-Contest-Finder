@@ -17,10 +17,7 @@ const getContests = (user1, user2, search, callback) => {
     } else {
       const res = body.result;
       for (let i = 0; i < res.length; i++) {
-        userContests.add({
-          contestId: res[i].contestId,
-          contestName: res[i].contestName
-        });
+        userContests.add(Number(res[i].contestId));
       }
     }
 
@@ -33,10 +30,7 @@ const getContests = (user1, user2, search, callback) => {
       } else {
         const res = body.result;
         for (let i = 0; i < res.length; i++) {
-          userContests.add({
-            contestId: res[i].contestId,
-            contestName: res[i].contestName
-          });
+          userContests.add(Number(res[i].contestId));
         }
       }
 
@@ -51,11 +45,7 @@ const getContests = (user1, user2, search, callback) => {
             if (res[i].phase === "FINISHED") {
               let contestType = "Div. " + search;
               if (search === '0' || !search) {
-                let obj = {
-                  contestId: res[i].contestId,
-                  contestName: res[i].contestName
-                }
-                if (!userContests.has(obj)) {
+                if (!userContests.has(Number(res[i].id))) {
                   contestList.push({
                     contestId: res[i].id,
                     contestName: res[i].name
@@ -66,11 +56,7 @@ const getContests = (user1, user2, search, callback) => {
               else {
                 let contest = JSON.stringify(res[i].name);
                 if (contest.includes(contestType)) {
-                  let obj = {
-                    contestId: res[i].contestId,
-                    contestName: res[i].contestName
-                  };
-                  if (!userContests.has(obj)) {
+                  if (!userContests.has(Number(res[i].id))) {
                     contestList.push({
                       contestId: res[i].id,
                       contestName: res[i].name
